@@ -29,6 +29,19 @@ class UserController extends Controller
 
         return view('admin.pages.users.index', compact('users'));
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function partner()
+    {
+        $users = $this->repository->paginate();
+
+        return "ok";
+
+        // return view('admin.pages.users.index', compact('users'));
+    }
 
     /**
      * Show the form for creating a new resource.

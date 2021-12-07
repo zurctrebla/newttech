@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateGame extends FormRequest
+class StoreUpdateLocator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreUpdateGame extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,10 +23,8 @@ class StoreUpdateGame extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(3);
-
         return [
-            'name' => "required|min:2|max:255|unique:games,name,{$id},id",
+            //
         ];
     }
 }

@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     /**
      * Users
      */
+    Route::get('/admin/partner', [UserController::class, 'partner'])->name('users.partner');
+
     Route::any('/admin/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
     Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
@@ -30,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+
 
     /**
      * Permissions
@@ -80,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/games/{id}', [GameController::class, 'destroy'])->name('games.destroy');
     Route::get('/admin/games/{id}', [GameController::class, 'show'])->name('games.show');
     Route::post('/admin/games', [GameController::class, 'store'])->name('games.store');
-    Route::get('/admin/games', [GameController::class, 'index'])->name('roles.index');
+    Route::get('/admin/games', [GameController::class, 'index'])->name('games.index');
 
 
 });

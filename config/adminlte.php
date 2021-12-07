@@ -286,7 +286,7 @@ return [
         ],
         [
             'text' => 'Parceiros',
-            'url'  => 'admin/permissions',
+            'url'  => 'admin/users/partner',
             'icon' => 'fas fa-handshake',
             'can'  => '',
         ],
