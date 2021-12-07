@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateLocator;
+use App\Models\Game;
 use App\Models\Locator;
 use Illuminate\Http\Request;
 
-class ControllerLocator extends Controller
+class LocatorController extends Controller
 {
     protected $repository;
 
@@ -37,7 +38,9 @@ class ControllerLocator extends Controller
      */
     public function create()
     {
-        return view('admin.pages.locators.create');
+        $games = Game::all();
+
+        return view('admin.pages.locators.create', compact('games'));
     }
 
     /**

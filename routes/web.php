@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ACL\{
 use App\Http\Controllers\Admin\{
     DashboardController,
     GameController,
+    LocatorController,
     SettingController,
     UserController
 };
@@ -84,6 +85,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/games/{id}', [GameController::class, 'show'])->name('games.show');
     Route::post('/admin/games', [GameController::class, 'store'])->name('games.store');
     Route::get('/admin/games', [GameController::class, 'index'])->name('games.index');
+
+    /**
+     * Locators
+     */
+    Route::any('/admin/locators/search', [LocatorController::class, 'search'])->name('locators.search');
+    Route::get('/admin/locators/create', [LocatorController::class, 'create'])->name('locators.create');
+    Route::put('/admin/locators/{id}', [LocatorController::class, 'update'])->name('locators.update');
+    Route::get('/admin/locators/edit/{id}', [LocatorController::class, 'edit'])->name('locators.edit');
+    Route::delete('/admin/locators/{id}', [LocatorController::class, 'destroy'])->name('locators.destroy');
+    Route::get('/admin/locators/{id}', [LocatorController::class, 'show'])->name('locators.show');
+    Route::post('/admin/locators', [LocatorController::class, 'store'])->name('locators.store');
+    Route::get('/admin/locators', [LocatorController::class, 'index'])->name('locators.index');
 
 
 });

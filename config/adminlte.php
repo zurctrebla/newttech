@@ -290,6 +290,12 @@ return [
             'icon' => 'fas fa-handshake',
             'can'  => '',
         ],
+        [
+            'text' => 'Localizadores',
+            'url'  => 'admin/locators',
+            'icon' => 'fas fa-location-arrow',
+            'can'  => '',
+        ],
         /*
         ['header' => 'account_settings'],
         [
