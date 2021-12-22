@@ -24,12 +24,12 @@ services:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - 81:81
-            - 444:444
+            - 81:80
+            - 444:443
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
-            - ./etc/letsencrypt/:/etc/letsencrypt/
+            - ./etc/letsencrypt/live/:/etc/letsencrypt/live/
         networks:
             - cursos
 
