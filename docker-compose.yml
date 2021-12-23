@@ -28,8 +28,8 @@ services:
             #- 443:443
         volumes:
             - ./:/var/www
-            - ./docker/nginx/:/etc/nginx/conf.d/
-            #- ./etc/letsencrypt/live/:/etc/letsencrypt/live/
+            - ./docker/nginx/test/:/etc/nginx/conf.d/
+            - ./etc/letsencrypt/live/:/etc/letsencrypt/live/
         networks:
             - cursos
 
