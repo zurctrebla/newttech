@@ -51,12 +51,13 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
-        links:
-           - mysql
+        restart: always
+        environment:
+          - PMA_HOST: mysql
+          - PMA_USER: root
+          - PMA_PASSWORD: root
         ports:
            - 8081:8081
-        environment:
-          - PMA_ARBITRARY=1
 
     # queue
     queue:
