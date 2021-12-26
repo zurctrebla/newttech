@@ -49,6 +49,15 @@ services:
         networks:
             - cursos
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        links:
+           - mysql
+        ports:
+           - 8081:8081
+        environment:
+          - PMA_ARBITRARY=1
+
     # queue
     queue:
         build:
