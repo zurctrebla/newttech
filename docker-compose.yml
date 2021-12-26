@@ -49,16 +49,6 @@ services:
         networks:
             - cursos
 
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin:latest
-        restart: always
-        environment:
-          - PMA_HOST: ${DB_HOST}
-          - PMA_USER: ${DB_USERNAME}
-          - PMA_PASSWORD: ${DB_PASSWORD}
-        ports:
-           - 8081:8081
-
     # queue
     queue:
         build:
