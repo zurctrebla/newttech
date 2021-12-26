@@ -53,9 +53,9 @@ services:
         image: phpmyadmin/phpmyadmin:latest
         restart: always
         environment:
-          - PMA_HOST: mysql
-          - PMA_USER: root
-          - PMA_PASSWORD: root
+          - PMA_HOST: ${DB_HOST}
+          - PMA_USER: ${DB_USERNAME}
+          - PMA_PASSWORD: ${DB_PASSWORD}
         ports:
            - 8081:8081
 
