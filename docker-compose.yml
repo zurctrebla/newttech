@@ -49,15 +49,18 @@ services:
         networks:
             - cursos
 
-#    phpmyadmin:
-#        image: phpmyadmin/phpmyadmin:latest
-#        restart: always
-#        environment:
-#          - PMA_HOST: ${DB_HOST}
-#          - PMA_USER: ${DB_USERNAME}
-#          - PMA_PASSWORD: ${DB_PASSWORD}
-#        ports:
-#           - 8081:8081
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        links:
+            - mysql
+        #restart: always
+        ports:
+           - 8081:8081
+        environment:
+        #  - PMA_HOST: ${DB_HOST}
+        #  - PMA_USER: ${DB_USERNAME}
+        #  - PMA_PASSWORD: ${DB_PASSWORD}
+           - PMA_ARBITRARY = 1
 
     # queue
     queue:
