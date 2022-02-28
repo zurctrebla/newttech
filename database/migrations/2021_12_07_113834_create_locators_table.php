@@ -15,14 +15,15 @@ class CreateLocatorsTable extends Migration
     {
         Schema::create('locators', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('number')->unique();
             $table->string('percent')->nullable();
             $table->string('serial')->unique();
             $table->foreignId('game_id')->constrained('games');
-            // $table->foreignId('partner_id')->constrained('partners');
-            // $table->foreignId('client_id')->constrained('clients')->nullable();
+            $table->foreignId('partner_id')->constrained('users');
+            $table->foreignId('client_id')->constrained('users')->nullable();
+            $table->foreignId('esp_id')->constrained('esps')->nullable();
             $table->string('situation')->nullable();
-            // $table->foreignId('esp_id')->constrained('esps')->nullable();
             $table->timestamps();
         });
     }

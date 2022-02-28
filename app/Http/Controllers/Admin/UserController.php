@@ -18,6 +18,7 @@ class UserController extends Controller
 
         $this->middleware(['can:users']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,19 +29,6 @@ class UserController extends Controller
         $users = $this->repository->paginate();
 
         return view('admin.pages.users.index', compact('users'));
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function partner()
-    {
-        $users = $this->repository->paginate();
-
-        return "ok";
-
-        // return view('admin.pages.users.index', compact('users'));
     }
 
     /**

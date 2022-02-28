@@ -7,9 +7,11 @@ use App\Http\Controllers\Admin\ACL\{
     RoleController
 };
 use App\Http\Controllers\Admin\{
+    ClientController,
     DashboardController,
     GameController,
     LocatorController,
+    PartnerController,
     SettingController,
     UserController
 };
@@ -17,14 +19,11 @@ use App\Http\Controllers\Admin\{
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/home', [DashboardController::class, 'index'])->name('admin.index');
-
     Route::get('/admin/settings', [SettingController::class, 'index']);
 
     /**
      * Users
      */
-    Route::get('/admin/partner', [UserController::class, 'partner'])->name('users.partner');
-
     Route::any('/admin/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
     Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
@@ -33,7 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
-
 
     /**
      * Permissions
@@ -73,7 +71,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/roles/{id}/permissions', [PermissionRoleController::class, 'permissions'])->name('roles.permissions');
     // Route::get('/admin/roles/{id}/permissions', [PermissionRoleController::class, 'index'])->name('permissions.index');
 
-
     /**
      * Games
      */
@@ -87,8 +84,33 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/games', [GameController::class, 'index'])->name('games.index');
 
     /**
+     * Partners
+     */
+    Route::any('/admin/partners/search', [PartnerController::class, 'search'])->name('partners.search');
+    Route::get('/admin/partners/create', [PartnerController::class, 'create'])->name('partners.create');
+    Route::put('/admin/partners/{id}', [PartnerController::class, 'update'])->name('partners.update');
+    Route::get('/admin/partners/edit/{id}', [PartnerController::class, 'edit'])->name('partners.edit');
+    Route::delete('/admin/partners/{id}', [PartnerController::class, 'destroy'])->name('partners.destroy');
+    Route::get('/admin/partners/{id}', [PartnerController::class, 'show'])->name('partners.show');
+    Route::post('/admin/partners', [PartnerController::class, 'store'])->name('partners.store');
+    Route::get('/admin/partners', [PartnerController::class, 'index'])->name('partners.index');
+
+    /**
+     * Clients
+     */
+    Route::any('/admin/clients/search', [ClientController::class, 'search'])->name('clients.search');
+    Route::get('/admin/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::put('/admin/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
+    Route::get('/admin/clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit');
+    Route::delete('/admin/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::get('/admin/clients/{id}', [ClientController::class, 'show'])->name('clients.show');
+    Route::post('/admin/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/admin/clients', [ClientController::class, 'index'])->name('clients.index');
+
+    /**
      * Locators
      */
+    Route::get('/admin/locators/qrcode/{identify}', [LocatorController::class, 'qrcode'])->name('locators.qrcode');
     Route::any('/admin/locators/search', [LocatorController::class, 'search'])->name('locators.search');
     Route::get('/admin/locators/create', [LocatorController::class, 'create'])->name('locators.create');
     Route::put('/admin/locators/{id}', [LocatorController::class, 'update'])->name('locators.update');
@@ -97,7 +119,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/locators/{id}', [LocatorController::class, 'show'])->name('locators.show');
     Route::post('/admin/locators', [LocatorController::class, 'store'])->name('locators.store');
     Route::get('/admin/locators', [LocatorController::class, 'index'])->name('locators.index');
-
 
 });
 

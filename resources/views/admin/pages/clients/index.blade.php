@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Localizadores')
+@section('title', 'Usuários')
 
 @section('content_header')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <a href="{{ route('locators.create') }}" class="btn btn-outline-success btn-sm">Cadastrar</a>
+                <a href="{{ route('users.create') }}" class="btn btn-outline-success btn-sm">Cadastrar</a>
             </ol>
             </div>
         </div>
@@ -24,44 +24,41 @@
             <div class="col-md-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <form action="{{ route('locators.search') }}" method="POST" class="form form-inline">
+                        <form action="{{ route('users.search') }}" method="POST" class="form form-inline">
                             @csrf
                             <input type="text" name="filter" placeholder="Filtro" class="form-control" value="{{ $filters['filter'] ?? '' }}">
                             <button type="submit" class="btn btn-dark">Filtrar</button>
                         </form>
                     </div>
                         <div class="card-body">
-                            <table id="locators" class="table table-bordered table-striped">
+                            <table id="users" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Localizador</th>
-                                        <th>Serial</th>
-                                        <th>Jogo</th>
-                                        <th>Parceiro</th>
-                                        <th>Cliente</th>
+                                        <th>Nome</th>
+                                        <th>E-mail</th>
+                                        <th>Nível de Acesso</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($locators as $locator)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $locator->number }}</td>
-                                            <td>{{ $locator->serial }}</td>
-                                            <td>{{ $locator->game->name }}</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                {{ $user->role->name }}
+                                            </td>
                                             <td class="text-center">
                                                 <span class="d-none d-md-block">
-                                                    <a href="{{ route('locators.qrcode', $locator->identify) }}" class="btn btn-outline-default btn-sm" target="_blank">QrCode</a>
-                                                    <a href="{{ route('locators.show', $locator->id) }}" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                                    @can('locator-edit')
-                                                        <a href="{{ route('locators.edit', $locator->id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
+                                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                                    @can('user-edit')
+                                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
                                                     @endcan
-                                                    @can('locator-delete')
-                                                        <form action="{{ route('locators.destroy', $locator->id) }}" style="display:inline" method="POST">
+                                                    @can('user-delete')
+                                                        <form action="{{ route('users.destroy', $user->id) }}" style="display:inline" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Deseja apagar o localizador?')" >Apagar</button>
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Deseja apagar o usuário ?')" >Apagar</button>
                                                         </form>
                                                     @endcan
                                                 </span>
@@ -70,12 +67,12 @@
                                                         Ações
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                                        <a href="{{ route('locators.show', $locator->id) }}" class="dropdown-item">Visualizar</a>
-                                                        @can('locator-edit')
-                                                            <a href="{{ route('locators.edit', $locator->id) }}" class="dropdown-item">Editar</a>
+                                                        <a href="{{ route('users.show', $user->id) }}" class="dropdown-item">Visualizar</a>
+                                                        @can('user-edit')
+                                                            <a href="{{ route('users.edit', $user->id) }}" class="dropdown-item">Editar</a>
                                                         @endcan
-                                                        @can('locator-delete')
-                                                            <button class="dropdown-item" onclick="return confirm('Deseja apagar o localizador?')">Apagar</button>
+                                                        @can('user-delete')
+                                                            <button class="dropdown-item" onclick="return confirm('Deseja apagar o usuário ?')">Apagar</button>
                                                         @endcan
                                                     </div>
                                                 </div>
@@ -87,9 +84,9 @@
                         </div>
                         <div class="card-footer">
                             @if (isset($filters))
-                                {!! $locators->appends($filters)->links() !!}
+                                {!! $users->appends($filters)->links() !!}
                             @else
-                                {!! $locators->links() !!}
+                                {!! $users->links() !!}
                             @endif
                         </div>
                 </div>

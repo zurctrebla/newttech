@@ -286,8 +286,14 @@ return [
         ],
         [
             'text' => 'Parceiros',
-            'url'  => 'admin/users/partner',
+            'url'  => 'admin/partners',
             'icon' => 'fas fa-handshake',
+            'can'  => '',
+        ],
+        [
+            'text' => 'Clientes',
+            'url'  => 'admin/clients',
+            'icon' => 'fas fa-user-alt',
             'can'  => '',
         ],
         [

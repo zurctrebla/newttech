@@ -26,26 +26,26 @@
     <div class="col-sm-4">
       <div class="form-group">
        <label>Parceiro *</label>
-        <select name="role_id" class="form-control" required>
-            <option value="">Escolha</option>
-                {{-- @foreach($roles as $role)
-                    <option value="{{ $role->id }}" @if(isset($userRole) && $role->name == $userRole) selected @endif>
-                        {{ $role->name }}
-                    </option>
-                @endforeach --}}
+       <select name="partner_id" class="form-control" required>
+        <option value="">Escolha</option>
+            @foreach($partners as $partner)
+                <option value="{{ $partner->id }}" @if(isset($$partner->id )) selected @endif>
+                    {{ $partner->name }}
+                </option>
+            @endforeach
         </select>
       </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
          <label>Cliente *</label>
-            <select name="role_id" class="form-control" required>
-                <option value="">Escolha</option>
-                    {{-- @foreach($roles as $role)
-                        <option value="{{ $role->id }}" @if(isset($userRole) && $role->name == $userRole) selected @endif>
-                            {{ $role->name }}
-                        </option>
-                    @endforeach --}}
+         <select name="client_id" class="form-control" required>
+            <option value="">Escolha</option>
+                @foreach($clients as $client)
+                    <option value="{{ $client->id }}" @if(isset($$client->id )) selected @endif>
+                        {{ $client->name }}
+                    </option>
+                @endforeach
             </select>
         </div>
       </div>

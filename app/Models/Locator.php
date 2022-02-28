@@ -9,7 +9,7 @@ class Locator extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['number', 'percent', 'serial', 'game_id', 'situation'];
+    protected $fillable = ['number', 'percent', 'serial', 'game_id', 'partner_id', 'client_id', 'situation'];
 
     public function game()
     {
