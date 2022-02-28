@@ -51,6 +51,8 @@ class LocatorController extends Controller
      */
     public function store(StoreUpdateLocator $request)
     {
+        dd($request->all());
+
         $this->repository->create($request->all());
 
         return redirect()->route('locators.index')->with('message', 'Localizador cadastrado com sucesso');
