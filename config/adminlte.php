@@ -296,6 +296,18 @@ return [
             'icon' => 'fas fa-location-arrow',
             'can'  => '',
         ],
+        [
+            'text' => 'Leituras',
+            'url'  => 'admin/readings',
+            'icon' => 'fas fa-pen-alt',
+            'can'  => '',
+        ],
+        [
+            'text' => 'Sair',
+            'url'  => '/logout',
+            'icon' => 'fas fa-sign-out-alt',
+            'can'  => '',
+        ],
         /*
         ['header' => 'account_settings'],
         [

@@ -26,12 +26,12 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-aqua">
-                  <i class="fas fa-user-tie"></i>
+                  <i class="fas fa-location-arrow"></i>
                 </span>
 
               <div class="info-box-content">
-                <span class="info-box-text">#</span>
-                <span class="info-box-number">{{-- {{ $totalGuests }} --}}</span>
+                <span class="info-box-text">Localizadores</span>
+                <span class="info-box-number">{{ $totalLocators }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -41,12 +41,12 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-aqua">
-                  <i class="fas fa-car"></i>
+                  <i class="fas fa-pen-alt"></i>
                 </span>
 
               <div class="info-box-content">
-                <span class="info-box-text">#</span>
-                <span class="info-box-number">{{-- {{ $totalVehicles }} --}}</span>
+                <span class="info-box-text">Leituras</span>
+                <span class="info-box-number">{{ $totalReadings }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
