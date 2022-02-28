@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     # image project
-    curso_x:
+    newttech:
         build:
             args:
                 user: carlos
@@ -17,7 +17,7 @@ services:
             - redis
             - queue
         networks:
-            - cursos
+            - rede
 
     # nginx
     nginx:
@@ -31,7 +31,7 @@ services:
             - ./docker/nginx/:/etc/nginx/conf.d/
             #- ./etc/letsencrypt/live/:/etc/letsencrypt/live/
         networks:
-            - cursos
+            - rede
 
     # db mysql
     mysql:
@@ -47,7 +47,7 @@ services:
         ports:
             - 3306:3306
         networks:
-            - cursos
+            - rede
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
@@ -77,14 +77,14 @@ services:
         depends_on:
             - redis
         networks:
-            - cursos
+            - rede
 
     # redis
     redis:
         image: redis:latest
         networks:
-            - cursos
+            - rede
 
 networks:
-    cursos:
+    rede:
         driver: bridge

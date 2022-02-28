@@ -4,17 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateLocator;
-use App\Models\Game;
-use App\Models\Locator;
+use App\Models\{
+    Game,
+    Locator,
+    User
+};
 use Illuminate\Http\Request;
 
 class LocatorController extends Controller
 {
-    protected $repository;
+    protected $locator;
 
-    public function __construct(Locator $locator)
+    public function __construct(
+        Locator $locator,
+        Game $game,
+        User $partner,
+        User $client
+        )
     {
-        $this->repository = $locator;
+        $this->locator = $locator;
+        $this->game = $game;
+        $this->partner = $partner;
+        $this->client = $client;
 
         // $this->middleware(['can:locators']);
     }
@@ -26,7 +37,7 @@ class LocatorController extends Controller
      */
     public function index()
     {
-        $locators = $this->repository->paginate();
+        $locators = $this->locator->paginate();
 
         return view('admin.pages.locators.index', compact('locators'));
     }
@@ -38,9 +49,12 @@ class LocatorController extends Controller
      */
     public function create()
     {
-        $games = Game::all();
+        $games = $this->game->get();
+        $partners = $this->partner->get();
 
-        return view('admin.pages.locators.create', compact('games'));
+        $clients = $this->client->get();
+
+        return view('admin.pages.locators.create', compact('games','partners', 'clients'));
     }
 
     /**
@@ -119,6 +133,25 @@ class LocatorController extends Controller
         $locator->delete();
 
         return redirect()->route('locators.index')->with('message', 'Localizador deletado com sucesso');
+    }
+
+    /**
+     * Generate QrCode.
+     *
+     * @param  string  $identify
+     * @return \Illuminate\Http\Response
+     */
+    public function qrcode($identify)
+    {
+        if (!$locator = $this->repository->where('identify', $identify)->first()) {
+            return redirect()->back();
+        }
+
+        $tenant = auth()->user->tenant;
+
+        $uri = env('URI_CLIENT') . "/{$tenant->uuid}/{$locator->uuid}";
+
+        return view('admin.pages.locators.qrcode', compact('uri'));
     }
 
     /**

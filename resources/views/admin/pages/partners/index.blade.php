@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuários')
+@section('title', 'Parceiros')
 
 @section('content_header')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <a href="{{ route('users.create') }}" class="btn btn-outline-success btn-sm">Cadastrar</a>
+                <a href="{{ route('partners.create') }}" class="btn btn-outline-success btn-sm">Cadastrar</a>
             </ol>
             </div>
         </div>
@@ -24,41 +24,37 @@
             <div class="col-md-12">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <form action="{{ route('users.search') }}" method="POST" class="form form-inline">
+                        <form action="{{ route('partners.search') }}" method="POST" class="form form-inline">
                             @csrf
                             <input type="text" name="filter" placeholder="Filtro" class="form-control" value="{{ $filters['filter'] ?? '' }}">
                             <button type="submit" class="btn btn-dark">Filtrar</button>
                         </form>
                     </div>
                         <div class="card-body">
-                            <table id="users" class="table table-bordered table-striped">
+                            <table id="partners" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Nome</th>
-                                        <th>E-mail</th>
-                                        <th>Nível de Acesso</th>
                                         <th class="text-center">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($partners as $partner)
                                         <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>
-                                                {{ $user->role->name }}
-                                            </td>
+                                            <td>{{ $partner->id }}</td>
+                                            <td>{{ $partner->name }}</td>
                                             <td class="text-center">
                                                 <span class="d-none d-md-block">
-                                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                                    @can('user-edit')
-                                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
+                                                    <a href="{{ route('partners.show', $partner->id) }}" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                                    @can('partner-edit')
+                                                        <a href="{{ route('partners.edit', $partner->id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
                                                     @endcan
-                                                    @can('user-delete')
-                                                        <form action="{{ route('users.destroy', $user->id) }}" style="display:inline" method="POST">
+                                                    @can('partner-delete')
+                                                        <form action="{{ route('partners.destroy', $partner->id) }}" style="display:inline" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Deseja apagar o usuário ?')" >Apagar</button>
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Deseja apagar o Parceiro ?')" >Apagar</button>
                                                         </form>
                                                     @endcan
                                                 </span>
@@ -67,12 +63,12 @@
                                                         Ações
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                                        <a href="{{ route('users.show', $user->id) }}" class="dropdown-item">Visualizar</a>
-                                                        @can('user-edit')
-                                                            <a href="{{ route('users.edit', $user->id) }}" class="dropdown-item">Editar</a>
+                                                        <a href="{{ route('partners.show', $partner->id) }}" class="dropdown-item">Visualizar</a>
+                                                        @can('partner-edit')
+                                                            <a href="{{ route('partners.edit', $partner->id) }}" class="dropdown-item">Editar</a>
                                                         @endcan
-                                                        @can('user-delete')
-                                                            <button class="dropdown-item" onclick="return confirm('Deseja apagar o usuário ?')">Apagar</button>
+                                                        @can('partner-delete')
+                                                            <button class="dropdown-item" onclick="return confirm('Deseja apagar o Parceiro ?')">Apagar</button>
                                                         @endcan
                                                     </div>
                                                 </div>
@@ -84,9 +80,9 @@
                         </div>
                         <div class="card-footer">
                             @if (isset($filters))
-                                {!! $users->appends($filters)->links() !!}
+                                {!! $partners->appends($filters)->links() !!}
                             @else
-                                {!! $users->links() !!}
+                                {!! $partners->links() !!}
                             @endif
                         </div>
                 </div>
