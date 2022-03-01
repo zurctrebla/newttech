@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateLocator;
 use App\Models\{
+    Esp,
     Game,
     Locator,
     User
@@ -19,13 +20,15 @@ class LocatorController extends Controller
         Locator $locator,
         Game $game,
         User $partner,
-        User $client
+        User $client,
+        Esp $esp
         )
     {
         $this->locator = $locator;
         $this->game = $game;
         $this->partner = $partner;
         $this->client = $client;
+        $this->esp = $esp;
 
         // $this->middleware(['can:locators']);
     }
@@ -51,10 +54,10 @@ class LocatorController extends Controller
     {
         $games = $this->game->get();
         $partners = $this->partner->get();
-
         $clients = $this->client->get();
+        $esps = $this->esp->get();
 
-        return view('admin.pages.locators.create', compact('games','partners', 'clients'));
+        return view('admin.pages.locators.create', compact('games','partners', 'clients', 'esps'));
     }
 
     /**
@@ -63,11 +66,11 @@ class LocatorController extends Controller
      * @param  \App\Http\Requests\StoreUpdateLocator $$request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateLocator $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
-        $this->repository->create($request->all());
+        $this->locator->create($request->all());
 
         return redirect()->route('locators.index')->with('message', 'Localizador cadastrado com sucesso');
     }
@@ -95,11 +98,16 @@ class LocatorController extends Controller
      */
     public function edit($id)
     {
-        if (!$locator = $this->repository->find($id)) {
+        if (!$locator = $this->locator->find($id)) {
             return redirect()->back();
         }
 
-        return view('admin.pages.locators.edit', compact('locator'));
+        $games = $this->game->get();
+        $partners = $this->partner->get();
+        $clients = $this->client->get();
+        $esps = $this->esp->get();
+
+        return view('admin.pages.locators.edit', compact('locator', 'games', 'partners', 'clients', 'esps'));
     }
 
     /**
@@ -145,13 +153,15 @@ class LocatorController extends Controller
      */
     public function qrcode($identify)
     {
-        if (!$locator = $this->repository->where('identify', $identify)->first()) {
+        if (!$locator = $this->locator->where('identify', $identify)->first()) {
             return redirect()->back();
         }
 
-        $tenant = auth()->user->tenant;
+        // $tenant = auth()->user->tenant;
 
-        $uri = env('URI_CLIENT') . "/{$tenant->uuid}/{$locator->uuid}";
+        //$uri = env('URI_CLIENT') . "/{$tenant->uuid}/{$locator->uuid}";
+
+        $uri = env('URI_CLIENT') . "/{$locator->uuid}";
 
         return view('admin.pages.locators.qrcode', compact('uri'));
     }

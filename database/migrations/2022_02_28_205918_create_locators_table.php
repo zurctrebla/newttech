@@ -17,13 +17,12 @@ class CreateLocatorsTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('number')->unique();
-            $table->string('percent')->nullable();
+            $table->integer('comission');
             $table->string('serial')->unique();
             $table->foreignId('game_id')->constrained('games');
-            $table->foreignId('partner_id')->constrained('users');
+            $table->foreignId('partner_id')->constrained('users')->nullable();
             $table->foreignId('client_id')->constrained('users')->nullable();
             $table->foreignId('esp_id')->constrained('esps')->nullable();
-            $table->string('situation')->nullable();
             $table->timestamps();
         });
     }

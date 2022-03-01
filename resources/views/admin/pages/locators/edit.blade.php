@@ -15,7 +15,7 @@
                 <h3 class="card-title">Editar Localizador</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('locators.update', $user->id) }}" class="form" method="POST">
+                <form action="{{ route('locators.update', $locator->id) }}" class="form" method="POST">
                     @csrf
                     @method('PUT')
                     @include('admin.pages.locators._partials.form')

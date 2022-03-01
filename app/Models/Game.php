@@ -10,9 +10,4 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-
-    public function locators()
-    {
-        return $this->hasMany(Locator::class);
-    }
 }

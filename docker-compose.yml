@@ -50,10 +50,10 @@ services:
             - rede
 
     phpmyadmin:
-        image: phpmyadmin/phpmyadmin:latest
+        image: phpmyadmin
         links:
             - mysql
-        #restart: always
+        restart: always
         ports:
            - 8081:80
         environment:
@@ -61,6 +61,8 @@ services:
         #  - PMA_USER: ${DB_USERNAME}
         #  - PMA_PASSWORD: ${DB_PASSWORD}
            - PMA_ARBITRARY=1
+        networks:
+            - rede
 
     # queue
     queue:

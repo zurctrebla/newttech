@@ -15,7 +15,7 @@ class LocatorObserver
      */
     public function creating(Locator $locator)
     {
-        //$locator->uuid = Str::uuid();
+        $locator->uuid = Str::uuid();
     }
 
     /**

@@ -285,6 +285,12 @@ return [
             /* 'can'  => 'games', */
         ],
         [
+            'text' => 'Esps',
+            'url'  => 'admin/esps',
+            'icon' => 'fas fa-microchip',
+            'can'  => '',
+        ],
+        [
             'text' => 'Parceiros',
             'url'  => 'admin/partners',
             'icon' => 'fas fa-handshake',

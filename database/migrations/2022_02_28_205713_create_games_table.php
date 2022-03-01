@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEspsTable extends Migration
+class CreateGamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateEspsTable extends Migration
      */
     public function up()
     {
-        Schema::create('esps', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
-            $table->string('mac')->unique();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateEspsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('esps');
+        Schema::dropIfExists('games');
     }
 }
