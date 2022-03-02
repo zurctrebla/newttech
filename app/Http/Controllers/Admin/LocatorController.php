@@ -136,7 +136,7 @@ class LocatorController extends Controller
      */
     public function destroy($id)
     {
-        if (!$locator = $this->repository->find($id)) {
+        if (!$locator = $this->locator->find($id)) {
             return redirect()->back();
         }
 
@@ -151,9 +151,9 @@ class LocatorController extends Controller
      * @param  string  $identify
      * @return \Illuminate\Http\Response
      */
-    public function qrcode($identify)
+    public function qrcode($uuid)
     {
-        if (!$locator = $this->locator->where('identify', $identify)->first()) {
+        if (!$locator = $this->locator->where('uuid', $uuid)->first()) {
             return redirect()->back();
         }
 

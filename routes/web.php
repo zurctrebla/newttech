@@ -110,7 +110,7 @@ Route::middleware(['auth'])->group(function () {
     /**
      * Locators
      */
-    Route::get('/admin/locators/qrcode/{identify}', [LocatorController::class, 'qrcode'])->name('locators.qrcode');
+    Route::get('/admin/locators/qrcode/{uuid}', [LocatorController::class, 'qrcode'])->name('locators.qrcode');
     Route::any('/admin/locators/search', [LocatorController::class, 'search'])->name('locators.search');
     Route::get('/admin/locators/create', [LocatorController::class, 'create'])->name('locators.create');
     Route::put('/admin/locators/{id}', [LocatorController::class, 'update'])->name('locators.update');
