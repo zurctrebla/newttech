@@ -31,6 +31,10 @@ services:
             - ./docker/nginx/conf/server.conf:/etc/nginx/conf.d/:ro
             #- ./etc/letsencrypt/live/:/etc/letsencrypt/live/
             - ./certbot/www:/var/www/certbot/:ro
+    certbot:
+        image: certbot/certbot:latest
+        volumes:
+            - ./certbot/www/:/var/www/certbot/:rw
         networks:
             - rede
 
