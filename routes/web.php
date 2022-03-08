@@ -123,7 +123,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('test-acl', function () {
-    dd(auth()->user()->permissions());
+    // dd(auth()->user()->permissions());
+    // dd('teste');
+    return view('admin.pages.locators.payment');
 });
 
 Route::get('/', function () {

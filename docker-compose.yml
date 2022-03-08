@@ -25,11 +25,12 @@ services:
         restart: unless-stopped
         ports:
             - 80:80
-            #- 443:443
+            - 443:443
         volumes:
             - ./:/var/www
-            - ./docker/nginx/:/etc/nginx/conf.d/
+            - ./docker/nginx/conf/server.conf:/etc/nginx/conf.d/:ro
             #- ./etc/letsencrypt/live/:/etc/letsencrypt/live/
+            - ./certbot/www:/var/www/certbot/:ro
         networks:
             - rede
 
