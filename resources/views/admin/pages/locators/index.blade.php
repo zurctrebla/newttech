@@ -52,7 +52,7 @@
                                             <td></td>
                                             <td class="text-center">
                                                 <span class="d-none d-md-block">
-                                                    <a href="{{-- {{ route('locators.qrcode', $locator->identify) }} --}}" class="btn btn-outline-default btn-sm" target="_blank">QrCode</a>
+                                                    <a href="{{ route('locators.qrcode', $locator->uuid) }}" class="btn btn-outline-info btn-sm" target="_blank">QrCode</a>
                                                     <a href="{{ route('locators.show', $locator->id) }}" class="btn btn-outline-primary btn-sm">Visualizar</a>
                                                     @can('locator-edit')
                                                         <a href="{{ route('locators.edit', $locator->id) }}" class="btn btn-outline-warning btn-sm">Editar</a>
